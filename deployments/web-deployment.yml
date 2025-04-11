@@ -1,24 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
-  labels:
-    app: web
-  name: web
+  name: web-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: web
-  strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: web
     spec:
       containers:
-      - image: nginx:lastest
-        name: nginx
-        resources: {}
-status: {}
+      - name: web-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: web-volume
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: web-volume
+        persistentVolumeClaim:
+          claimName: web-pvc
+
