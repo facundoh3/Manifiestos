@@ -1,54 +1,54 @@
 # Proyecto Kubernetes – Implementación de Sitio Web Estático
 
 ## Descripción
-Este proyecto tiene como objetivo desplegar una página web estática en un entorno Kubernetes local mediante Minikube. Se utilizan distintos recursos de Kubernetes, incluyendo Namespace, ConfigMap, PersistentVolume, PersistentVolumeClaim, Deployment y Service para lograr el despliegue.
+Con esto vas a poder instalar un sitio web en un cluster de KS8 (Kubernetes)
+esto tiene los siguientes recursos para poder desplegar la pagina.
+Cabe recalcar que necesitas al menos un conocimiento basico de manejo de kubernetes 
 
+- Namespace
+- PersistentVolume
+- Persistent volume claim
+- Deployment
+- Service
+
+## Asegurate de contar con lo siguiente instalado en la maquina:
+- Git: Para clonar y versionar los repos
+- Minikube: Para levantar el cluster que va a tener kubernetes local
+- Kubectl: Para interactuar con el cluster
+- Docker: Necesario para la construccion y ejecucion de contenedores
 ________________________________________
 
-## Requisitos
-- Git
-- Minikube
-- kubectl
-- Docker instalado en la máquina
+## Paso a paso 
 
-________________________________________
+#### 1) Página Web Estática
+Clona el repositorio este tiene la web estatica donde se va a desplegar para verlo desde el cluster:
+* `git clone https://github.com/facundoh3/static-website.git`
 
-## Guía para Reproducir el Entorno
+#### 2) Manifiestos de Kubernetes
+Clona también el repo que reúne los archivos de configuración para que los puedas aplicar para levantar todo:
+* `git clone https://github.com/facundoh3/Manifiestos.git`
 
-### 1. Clonación de Repositorios
-
-#### Página Web Estática
-Clona el repositorio que contiene la web:
-* `git clone https://github.com/JuliettaSh/static-website.git`
-
-#### Manifiestos de Kubernetes
-Clona también el repositorio que reúne los archivos de configuración:
-* `git clone https://github.com/JuliettaSh/Manifiestos.git`
-
-### 2. Inicialización de Minikube
-
-Arranca Minikube utilizando un perfil personalizado y asegúrate de activar el metrics-server:
+#### 3) Arranca el Minikube utilizando un perfil personalizado y asegúrate de activar el metrics-server:
 * `minikube start -p 0311at --addons=metrics-server`
 
-### 3. Despliegue de los Manifiestos
+Bueno en este punto ya tenes todo clonado ahora te tenes que ir a la carpeta donde estan los Manifiestos para poder aplicarlos 
+cd ManifestScripts
 
-Desde el repositorio con los manifiestos, aplica los recursos en el siguiente orden:
+despues de esto vas a poder crear cada recurso para desplegarlo 
 
-1. Crear el PersistentVolume:
+1. Crea el persistent volume:
    * `kubectl apply -f volumes/pv.yaml`
-2. Crear el PersistentVolumeClaim:
+2. Crea el persistent volume claim:
    * `kubectl apply -f volumes/pvc.yaml`
-3. Desplegar la aplicación web mediante el Deployment:
+3. Ejecuta el deployment:
    * `kubectl apply -f deployments/web-deployment.yml`
-4. Configurar el Service que expondrá la aplicación:
+4. Aplica el service que ese es el que va a exponer la app
    * `kubectl apply -f services/web-service.yml`
 
-> **Importante:** Asegúrate de estar trabajando en el contexto y namespace adecuados.
 
-### 4. Exposición del Servicio
-
-Para acceder a la página web, utiliza el siguiente comando, el cual utiliza el perfil y namespace configurados:
+#### 4. Exposición del Servicio
+Aca vas a tener que poner el nombre del perfil que creaste en el paso 3 en este caso "0311at" con el nombre del deployment para que arranque
 * `minikube service web-service -p 0311at`
 
-Este comando abrirá la aplicación en tu navegador de manera local.
+Esto va a abrir la pagina de manera local 
 
