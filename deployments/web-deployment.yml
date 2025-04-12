@@ -19,7 +19,9 @@ spec:
         command:
           - sh
           - -c
-          - git clone https://github.com/facundoh3/static-website.git /mnt/html
+          - |
+            rm -rf /mnt/html/* /mnt/html/.[!.]* /mnt/html/..?* 2>/dev/null || true
+            git clone https://github.com/facundoh3/static-website.git /mnt/html
         volumeMounts:
         - name: html-volume
           mountPath: /mnt/html
@@ -35,3 +37,6 @@ spec:
       - name: html-volume
         persistentVolumeClaim:
           claimName: web-pvc
+# persistentVolumeClaim:
+        # emptyDir: {}
+
