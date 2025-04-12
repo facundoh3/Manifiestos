@@ -56,7 +56,8 @@ Esto va a abrir la pagina de manera local
 Ahora cuando haces cambios en la pagina (Index) tenes que volver a desplegar el deployment (borrarlo y volverlo a poner) o hacer un rollout  
 - `kubectl rollout restart deployment/web-deployment.yml` esto es para el rollout
 Despues tenes que volver que lanzar el service como en el paso 4
-**Si los cambios no se ven, no te preocupes solamente recarga la pagina y los cambios se veran reflejados **
+
+**Si los cambios no se ven, no te preocupes solamente recarga la pagina y los cambios se veran reflejados**
 
 
 
