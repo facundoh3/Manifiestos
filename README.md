@@ -30,4 +30,4 @@ Clona también el repo que reúne los archivos de configuración para que los pu
 
 #### 3) Arranca el script que esta dentro de la carpeta ManifestScripts con bash deployment.sh 
 
-* Enjoy *
+**Enjoy**
