@@ -1,3 +1,13 @@
+#### 1) Página Web Estática
+Clona el repositorio este tiene la web estatica donde se va a desplegar para verlo desde el cluster:
+
+git clone https://github.com/facundoh3/static-website.git
+#### 2) Manifiestos de Kubernetes
+Clona también el repo que reúne los archivos de configuración para que los puedas aplicar para levantar todo:
+
+git clone https://github.com/facundoh3/Manifiestos.git
+
+
 #### 3) Arranca el Minikube utilizando un perfil personalizado y asegúrate de activar el metrics-server:
 * `minikube start -p 0311at --addons=metrics-server`
 
